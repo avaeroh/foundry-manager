@@ -1,2 +1,5 @@
 .env
 /Data
+/Config
+/Logs
+container_cache
