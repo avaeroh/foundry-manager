@@ -36,7 +36,7 @@ LATEST_BACKUP=$(rclone lsl $(prop 'BACKUP_LOCATION') | head -1 | grep "foundry_b
 echo "latest backup is ${LATEST_BACKUP}, pulling from ${BACKUP_LOCATION}..."
 rclone copy --update --ignore-existing --verbose --checkers 1 --contimeout 60s --timeout 300s --retries 3 --low-level-retries 10 --stats 5s "$(prop 'BACKUP_LOCATION')/${LATEST_BACKUP}" "$PROJECT_DIR"
 echo "Extracting Data dir from backup..."
-tar -xfv "${LATEST_BACKUP}" Data
+tar -xvf "${LATEST_BACKUP}"
 echo "Removing archive..."
 rm $LATEST_BACKUP
 echo ls
