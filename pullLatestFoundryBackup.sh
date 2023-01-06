@@ -40,8 +40,6 @@ echo "Latest remote modification date: ${LATEST_BACKUP_TS}"
 echo "Local Data dir modification datetime: ${DATA_DIR_DATETIME}"
 
 # convert to epocs for comparison
-REMOTE_EPOCH_TS=$(date --date="${LATEST_BACKUP_TS}" +%s%N)
-DATA_DIR_EPOCH_TS=$(date --date="${DATA_DIR_DATETIME}" +%s%N)
 if [[ $LATEST_BACKUP_TS > $DATA_DIR_DATETIME ]]; then
   echo "remote is newer than local Data dir, update required"
   echo "Pulling ${LATEST_BACKUP_NAME} from ${BACKUP_LOCATION}..."
