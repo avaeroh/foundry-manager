@@ -14,22 +14,22 @@ check_tools "rclone"
 
 #pull vars from env property
 function prop {
-    grep "${1}" "${ENV}" | cut -d'=' -f2
+  grep "${1}" "${ENV}" | cut -d'=' -f2
 }
 
 function checkEnvVarDefined {
- if [[ -z ${1} ]]; then
-     echo "ERROR: Please configure env property ${1} bin dir in ${ENV}"
-     exit 1
- fi
+  if [[ -z ${1} ]]; then
+    echo "ERROR: Please configure env property ${1} bin dir in ${ENV}"
+    exit 1
+  fi
 }
 
 FOUNDRY_TEMP_TAR="_tempfoundrybackup.tar.tgz"
-PROJECT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+PROJECT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 BACKUP_LOCATION=$(prop 'BACKUP_LOCATION')
 RCLONE=$(which rclone)
 checkEnvVarDefined "${RCLONE}" "${BACKUP_LOCATION}" "${PROJECT_DIR}"
-FILE_NAME="foundry_backup_`date +"%d-%m-%Y"`.tar.tgz"
+FILE_NAME="foundry_backup_$(date +"%d-%m-%Y").tar.tgz"
 
 echo "creating & compressing archive with name ${FILE_NAME} at ${PROJECT_DIR}..."
 tar -C "${PROJECT_DIR}" -cvzf "${FILE_NAME}" Data/
