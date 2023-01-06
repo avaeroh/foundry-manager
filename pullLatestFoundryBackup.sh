@@ -32,6 +32,8 @@ echo "Project & Foundry home dir will be $PROJECT_DIR"
 BACKUP_LOCATION=$(prop 'BACKUP_LOCATION')
 checkEnvVarDefined "${BACKUP_LOCATION}"
 echo "Backup location defined as ${BACKUP_LOCATION}, finding latest backup..."
+
+# extract modtimes from rclone lsl and from Data dir 
 LATEST_BACKUP_INFO=$(rclone lsl --order-by modtime $(prop 'BACKUP_LOCATION') | head -1 | grep "foundry_backup.*" | cut -d " " -f 2,3,4)
 LATEST_BACKUP_TS=$(echo "${LATEST_BACKUP_INFO}" | cut -d " " -f 1,2)
 LATEST_BACKUP_NAME=$(echo "${LATEST_BACKUP_INFO}" | cut -d " " -f 3)
@@ -39,7 +41,7 @@ DATA_DIR_DATETIME=$(stat Data | grep "Change" | cut -d ' ' -f 2,3)
 echo "Latest remote modification date: ${LATEST_BACKUP_TS}"
 echo "Local Data dir modification datetime: ${DATA_DIR_DATETIME}"
 
-# convert to epocs for comparison
+# check if pulling is neccessary beforehand
 if [[ $LATEST_BACKUP_TS > $DATA_DIR_DATETIME ]]; then
   echo "remote is newer than local Data dir, update required"
   echo "Pulling ${LATEST_BACKUP_NAME} from ${BACKUP_LOCATION}..."
