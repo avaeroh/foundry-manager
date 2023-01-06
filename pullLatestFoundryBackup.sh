@@ -38,7 +38,7 @@ rclone copy --update --ignore-existing --verbose --checkers 1 --contimeout 60s -
 echo "Extracting Data dir from backup..."
 tar -xvf "${LATEST_BACKUP}"
 echo "Removing archive..."
-rm $LATEST_BACKUP
+rm "${LATEST_BACKUP}"
 echo ls
 echo "Pull complete! Press any key to close..."
 read -rn1
