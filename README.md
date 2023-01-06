@@ -10,6 +10,7 @@ Currently supports:
 
 This repo is not designed to manage conflicts in Data - the latest files will always be assumed to be the 'desired', and will overwrite all others.
 
+Uses [foundryvtt-docker](https://github.com/felddy/foundryvtt-docker). Because of this, the exposed port of the app appears to be locked at `30000`, even if the `options.json` and `docker-compose.yaml` are updated otherwise.
 **Requirements**
 - zsh
 - tar
@@ -20,12 +21,13 @@ This repo is not designed to manage conflicts in Data - the latest files will al
 
 **Install**
 
-*Foundry Config*
+*Foundry config*
 - firstly, protect your creds: `git update-index --assume-unchanged docker/docker-compose/.env`
 - populate `docker/docker-compose/.env` with your Foundry Config. Note that each Foundry license can have a corresponding instance running on any one machine at a time. 
 - execute docker compose `/docker/docker-compose/docker-compose.yml` via `docker-compose up -d`
 - the foundry application will be running on localhost on your specified port. Note that running this is required to create the Data dir in the first instance.
 - if desired, modify config & port-forward to allow for the server to be internet-accessible.
+*foundry-manager config*
 - set `environment.properties` to your [remote dir in rclone](https://rclone.org/remote_setup/).
 - set execute permissions on the `.sh` files (`sudo chmod +x <filename>`)
 - run `pullLatestFoundryBackup.sh`, this will pull the latest archive from remote & extract it. If local Data dir is the most recent, nothing will be pulled.
