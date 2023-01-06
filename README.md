@@ -30,6 +30,7 @@ Uses [foundryvtt-docker](https://github.com/felddy/foundryvtt-docker). Because o
 - execute docker compose `/docker/docker-compose/docker-compose.yml` via `docker-compose up -d`
 - the foundry application will be running on localhost on your specified port. Note that running this is required to create the Data dir in the first instance.
 - if desired, modify config & port-forward to allow for the server to be internet-accessible.
+
 *foundry-manager config*
 - set `environment.properties` to your [remote dir in rclone](https://rclone.org/remote_setup/).
 - set execute permissions on the `.sh` files (`sudo chmod +x <filename>`)
