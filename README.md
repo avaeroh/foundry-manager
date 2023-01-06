@@ -1,9 +1,11 @@
 **About**
+
 Allows for development on Worlds in [FoundryVTT](https://foundryvtt.com/) to be migrated across various machines by sharing the latest Data dir via Cloud Storage (E.g. Google Drive). This is useful when switching machines, or for sharing FoundryVTT Worlds.
 
 Scripts have only been tested on Linux (Raspbian/WSL) and may not work on other OS.
 
-Currently supports:
+**Currently supports**
+
 - Running FoundryVTT via Docker.
 - Pulling Data dir after checking that remote is more recent.
 - Pushing Data dir. 
@@ -11,6 +13,7 @@ Currently supports:
 This repo is not designed to manage conflicts in Data - the latest files will always be assumed to be the 'desired', and will overwrite all others.
 
 Uses [foundryvtt-docker](https://github.com/felddy/foundryvtt-docker). Because of this, the exposed port of the app appears to be locked at `30000`, even if the `options.json` and `docker-compose.yaml` are updated otherwise.
+
 **Requirements**
 - zsh
 - tar
